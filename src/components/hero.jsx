@@ -1,4 +1,5 @@
 import Lottie from 'react-lottie-player'
+
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import {
@@ -36,7 +37,7 @@ const features = [
 export const Hero = () => {
   return (
     <div className="relative bg-gray-50">
-      <Popover className="bg-white shadow fixed w-full">
+      <Popover className="bg-white shadow fixed w-full z-10">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center py-4 md:justify-start md:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1">
