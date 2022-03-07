@@ -40,10 +40,9 @@ export const Feature = () => {
           <div className="mt-12 sm:mt-16 lg:mt-0 lg:col-start-1">
             <div className="pr-4 sm:pr-6 md:-ml-16 lg:px-0 lg:m-0 lg:relative lg:h-full">
             <Lottie 
-              className="inset-0 w-11/12 mx-auto lg:w-full h-full object-cover"  
+              className="inset-0 w-4/5 mx-auto h-full object-cover"  
               animationData={NotesJSON}
-              background="transparent"  
-              speed="1" 
+              background="transparent"
               loop 
               play
               />
@@ -107,8 +106,7 @@ export const Feature = () => {
             <Lottie 
               className="inset-0 w-11/12 mx-auto lg:w-full h-full object-cover"  
               animationData={AIJSON}
-              background="transparent"  
-              speed="1" 
+              background="transparent" 
               loop 
               play
               />

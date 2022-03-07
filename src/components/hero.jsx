@@ -175,10 +175,9 @@ export const Hero = () => {
         <div className="relative w-full pb-20 h-72 md:h-96 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 lg:h-full">
 
           <Lottie 
-              className="absolute inset-0 w-full h-full object-cover"  
+              className="inset-0 w-full xl:w-2/3 h-full object-cover"  
               animationData={LottieJson}
-              background="transparent"  
-              speed="1" 
+              background="transparent" 
               loop 
               play
               />
