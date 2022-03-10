@@ -222,7 +222,7 @@ const formFields = {
 
 function App() {
   return (
-    <div className='m-20'>
+    <div>
       <Authenticator 
         loginMechanisms={['email']} 
         formFields={formFields}
