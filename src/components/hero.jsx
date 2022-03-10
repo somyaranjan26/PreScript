@@ -155,7 +155,7 @@ export const Hero = () => {
             <div className="mt-10 sm:flex sm:justify-center lg:justify-start">
               <div className="rounded-md shadow">
                 <a
-                  href="/"
+                  href="https://coming-soon.d1u3s8zp8q85j0.amplifyapp.com/"
                   className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10"
                 >
                   Get started
@@ -163,7 +163,7 @@ export const Hero = () => {
               </div>
               <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
                 <a
-                  href="/"
+                  href="https://coming-soon.d1u3s8zp8q85j0.amplifyapp.com/"
                   className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10"
                 >
                   Live demo

@@ -18,7 +18,7 @@ export const CTA = () => {
                 nec.
               </p>
               <a
-                href="/"
+                href="https://coming-soon.d1u3s8zp8q85j0.amplifyapp.com/"
                 className="mt-8 bg-white border border-transparent rounded-md shadow px-5 py-3 inline-flex items-center text-base font-medium text-blue-600 hover:bg-blue-50"
               >
                 Sign up for free
@@ -26,11 +26,6 @@ export const CTA = () => {
             </div>
           </div>
           <div className="md:-mb-24 aspect-w-5 aspect-h-3 md:aspect-w-2 md:aspect-h">
-            {/* <img
-              className="transform translate-x-6 translate-y-6 rounded-md object-cover object-left-top sm:translate-x-16 lg:translate-y-20"
-              src="https://tailwindui.com/img/component-images/full-width-with-sidebar.jpg"
-              alt="App screenshot"
-            /> */}
             <Lottie 
               className="h-3/4 transform translate-x-6 translate-y-6 rounded-lg bg-white object-cover object-left-top sm:translate-x-16 lg:translate-y-20"  
               animationData={DashboardJSON}

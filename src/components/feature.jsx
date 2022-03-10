@@ -28,7 +28,7 @@ export const Feature = () => {
                 </p>
                 <div className="mt-6">
                   <a
-                    href="/"
+                    href="https://coming-soon.d1u3s8zp8q85j0.amplifyapp.com/"
                     className="inline-flex px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700"
                   >
                     Get started
@@ -70,7 +70,7 @@ export const Feature = () => {
                 </p>
                 <div className="mt-6">
                   <a
-                    href="/"
+                    href="https://coming-soon.d1u3s8zp8q85j0.amplifyapp.com/"
                     className="inline-flex px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700"
                   >
                     Get started
