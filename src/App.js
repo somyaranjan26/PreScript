@@ -5,6 +5,8 @@ import { Error } from './pages/404';
 import { Contact } from './pages/contact';
 import { Prescript } from './pages/prescript';
 import { Dashboard } from './pages/dashboard';
+import { SignIn } from './pages/signin';
+import { SignUp } from './pages/signup';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <Route exact path='/dashboard' element={<Dashboard />} />
         <Route exact path='/prescript' element={<Prescript />} />
         <Route exact path='/contact' element={<Contact />} />
+        <Route exact path='/signin' element={<SignIn />} />
+        <Route exact path='/signup' element={<SignUp />} />
         <Route path='*' element={<Error />} />
       </Routes>
     </div>
