@@ -16,13 +16,13 @@ import LottieJson from '../assets/lottieFiles.json'
 const features = [
   {
     name: 'About',
-    href: '/',
+    href: '/about',
     description: 'Get a better understanding of where your traffic is coming from.',
     icon: InformationCircleIcon,
   },
   {
     name: 'Contact',
-    href: '/',
+    href: '/contact',
     description: 'Speak directly to your customers in a more meaningful way.',
     icon: PhoneIcon,
   },
@@ -58,11 +58,11 @@ export const Hero = () => {
             </div>
             
             <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-              <a href="/" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
+              <a href="/signin" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
                 Sign in
               </a>
               <a
-                href="/"
+                href="/signup"
                 className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700"
               >
                 Sign up
