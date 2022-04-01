@@ -14,7 +14,7 @@ function App() {
       <Routes>
         <Route exact path='/' element={<Home />} />
         <Route exact path='/dashboard' element={<Dashboard />} />
-        <Route exact path='/prescript' element={<Prescript />} />
+        <Route exact path='/app' element={<Prescript />} />
         <Route exact path='/contact' element={<Contact />} />
         <Route exact path='/signin' element={<SignIn />} />
         <Route exact path='/signup' element={<SignUp />} />
