@@ -12,7 +12,7 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route exact path='/' element={<Home />} />
+        <Route index path='/' element={<Home />} />
         <Route exact path='/dashboard' element={<Dashboard />} />
         <Route exact path='/app' element={<Prescript />} />
         <Route exact path='/contact' element={<Contact />} />
@@ -22,6 +22,7 @@ function App() {
       </Routes>
     </div>
   );
+
 }
 
 export default App;

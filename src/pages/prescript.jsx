@@ -19,14 +19,21 @@ import {
 } from '@heroicons/react/solid'
 
 const navigation = [
-  { name: 'PreScript', href: '/prescript', icon: ViewListIcon, current: true },
+  { name: 'PreScript', href: '/app', icon: ViewListIcon, current: true },
   { name: 'Home', href: '/', icon: HomeIcon, current: false },
   { name: 'Settings', href: '/setting', icon: UserCircleIconOutline, current: false },
 ]
 const projects = [
   { id: 1, name: 'About us', href: '/aboutus' },
   { id: 2, name: 'Contact us', href: '/contactus' },
-  { id: 2, name: 'Terms & Condition', href: '/terms' }
+  { id: 3, name: 'Terms & Condition', href: '/terms' }
+]
+
+const recommendations = [
+  { id: 1, name: 'Lorem', href: '/' },
+  { id: 2, name: 'Ipsum', href: '/' },
+  { id: 3, name: 'dolor', href: '/' },
+  { id: 4, name: 'voluptatum', href: '/' }
 ]
 
 function classNames(...classes) {
@@ -35,6 +42,49 @@ function classNames(...classes) {
 
 export const Prescript = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+
+  const [ title, setTitle] = useState([]);
+  const [ note, setNote] = useState(null);
+
+  const [ score, setScore] = useState(null);
+  const [ date, setDate] = useState(null);
+
+  const classes = ['xl:col-span-2 xl:pr-8 xl:border-r xl:border-gray-200 max-h-screen', 'xl:col-span-3 max-h-screen']
+
+  const HandleClick = () => {
+
+    if (title && note ) {
+      const uploadNote = new FormData()
+      uploadNote.append('User', "2")
+      uploadNote.append('title', title)
+      uploadNote.append('note', note)
+  
+      var requestOptions = {
+        method: 'POST',
+        mode: "cors",
+        cache: "no-cache",
+        body: uploadNote,
+        redirect: "follow",
+      }
+  
+      fetch('http://127.0.0.1:8000/api/', requestOptions)
+          .then((res) =>  {
+              return res.json()
+          })
+          .then((data) => { 
+            var RecievedDate = new Date(data.created_At)
+            RecievedDate = RecievedDate.toString();
+            RecievedDate = RecievedDate.substring(0, RecievedDate.length - 33).replace(/ /g, ', ')
+
+            setScore(data.score)
+            setDate(RecievedDate)
+          })
+          .catch(error => console.log(error))
+    } else {
+      alert("Please Enter The Title!")
+    }
+  }
+
 
   return (
     <>
@@ -225,170 +275,167 @@ export const Prescript = () => {
                 </form>
               </div>
               <div className="ml-4 flex items-center lg:ml-6">
-                <button
+                <a href="/"
                   type="button"
                   className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-rose-600 hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
                 >
                   Sign out
-                </button>
+                </a>
               </div>
             </div>
           </div>
 
           <main className="flex-1">
             <div className="py-8 xl:py-10">
-              <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 xl:max-w-5xl xl:grid xl:grid-cols-3">
-                <div className="xl:col-span-2 xl:pr-8 xl:border-r xl:border-gray-200">
+              <form 
+                className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 xl:max-w-7xl xl:grid xl:grid-cols-3"
+              >
+                <div className={
+                    score 
+                    ? classes[0]
+                    : classes[1]
+                }> 
                   <div>
                     <div>
-                      <div className="md:flex md:items-center md:justify-between md:space-x-4 xl:border-b xl:pb-6">
-                        <div>
-                          <input className="text-2xl font-bold text-gray-900 focus:outline-none" placeholder='Title here' />
+                      <div className=" md:space-x-4 xl:border-b xl:pb-3">
+                        <div className='flex flex-row justify-between'>
+                          <input 
+                            type="text"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                            className="basis-5/6 text-2xl font-bold text-gray-900 focus:outline-none w-full" 
+                            placeholder='Title here' 
+                          />
+                          <div className="basis-1/6 text-right">
+                              <button 
+                                type="button"
+                                onClick={HandleClick}
+                                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+                              >
+                                Upload
+                              </button>
+                            </div>
                         </div>
                       </div>
-                      <aside className="mt-8 xl:hidden">
+
+                      { score && 
+                        <aside className="mt-8 xl:hidden">
                         <h2 className="sr-only">Score and Recommendation </h2>
                         <div className="space-y-5">
-                          <div className="flex items-center space-x-2">
-                            <ChatAltIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
-                            <span className="text-gray-900 text-4xl font-medium">Score</span>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                      <CheckCircleIcon className="h-5 w-5 text-green-500" aria-hidden="true" />
-                      <span className="text-green-700 text-md font-medium">96%</span>
-                    </div>
-                          
-                          <div className="flex items-center space-x-2">
-                            <CalendarIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
-                            <span className="text-gray-900 text-sm font-medium">
-                              Created on <time dateTime="2020-12-02">Dec 2, 2020</time>
-                            </span>
-                          </div>
+                            <div className="flex items-center space-x-2">
+                              <ChatAltIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                              <span className="text-gray-900 text-4xl font-medium">Score</span>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <CheckCircleIcon className="h-5 w-5 text-green-500" aria-hidden="true" />
+                              <span className="text-green-700 text-md font-medium">{score}%</span>
+                            </div>
+                            
+                            <div className="flex items-center space-x-2">
+                              <CalendarIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                              <span className="text-gray-900 text-sm font-medium">
+                                Created on {date}
+                              </span>
+                            </div>
                         </div>
                         <div className="mt-6 border-t border-b border-gray-200 py-6 space-y-8">
                         <div>
-                      <h2 className="text-sm font-medium text-gray-500">Recommendations</h2>
-                      <ul className="mt-2 leading-8">
-                        <li className="inline">
-                          <a
-                            href="/prescript"
-                            className="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5"
-                          >
-                            <div className="text-sm font-medium text-gray-900">Lorem</div>
-                          </a>{' '}
-                        </li>
-                        <li className="inline">
-                          <a
-                            href="/prescript"
-                            className="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5"
-                          >
-                            <div className="text-sm font-medium text-gray-900">Ipsum</div>
-                          </a>{' '}
-                        </li>
-                        <li className="inline">
-                          <a
-                            href="/prescript"
-                            className="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5"
-                          >
-                            <div className="text-sm font-medium text-gray-900">dolor</div>
-                          </a>{' '}
-                        </li>
-                        <li className="inline">
-                          <a
-                            href="/prescript"
-                            className="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5"
-                          >
-                            <div className="text-sm font-medium text-gray-900">voluptatum</div>
-                          </a>{' '}
-                        </li>
-                      </ul>
-                    </div>
+                            <h2 className="text-sm font-medium text-gray-500">Recommendations</h2>
+                            <ul className="mt-2 leading-8">
+                              {recommendations.map((recommendation)=> (
+                                  <li 
+                                    key={recommendation.id}
+                                    className="inline">
+                                  <a
+                                    href={recommendation.href}
+                                    className="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5"
+                                  >
+                                    <div className="text-sm font-medium text-gray-900">{recommendation.name}</div>
+                                  </a>{' '}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
                         </div>
                       </aside>
-                      <div className="py-3 xl:pt-6 xl:pb-0">
+                      }
+
+                      <div className="py-3 xl:pt-6 xl:pb-0 h-[90vh]">
                         <h2 className="sr-only">Description</h2>
-                        <div className="prose max-w-none">
-                            <textarea className='focus:outline-none w-full h-fit' placeholder='Write your notes here' name="note" id="note" ></textarea>
+                        <div className="prose max-w-none h-full">
+                            <textarea 
+                              className='focus:outline-none w-full resize-y h-full' 
+                              placeholder='Write your notes here' 
+                              name="note" 
+                              id="note" 
+                              type="text"
+                              value={note}
+                              onChange={(e) => setNote(e.target.value)}
+                            />
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <aside className="hidden xl:block xl:pl-8">
-                  <h2 className="sr-only">Score</h2>
-                  <div className="space-y-5">
-                    <div className="flex items-center space-x-2">
-                      <span className="text-gray-900 text-4xl font-medium">Score</span>
+                
+                { score && 
+                  <aside className="hidden xl:block xl:pl-8">
+                    <h2 className="sr-only">Score</h2>
+                    <div className="space-y-5">
+                      <div className="flex items-center space-x-2">
+                        <span className="text-gray-900 text-4xl font-medium">Score</span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <CheckCircleIcon className="h-5 w-5 text-green-500" aria-hidden="true" />
+                        <span className="text-green-700 text-lg font-medium">{score}%</span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <CalendarIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                        <span className="text-gray-900 text-sm font-medium">
+                          Created on <time dateTime="2020-12-02">{date}</time>
+                        </span>
+                      </div>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <CheckCircleIcon className="h-5 w-5 text-green-500" aria-hidden="true" />
-                      <span className="text-green-700 text-lg font-medium">96%</span>
+                    <div className="mt-6 border-t border-gray-200 py-6 space-y-8">
+                      {/* <div>
+                        <h2 className="text-sm font-medium text-gray-500">Assignees</h2>
+                        <ul className="mt-3 space-y-3">
+                          <li className="flex justify-start">
+                            <a href="/" className="flex items-center space-x-3">
+                              <div className="flex-shrink-0">
+                                <img
+                                  className="h-5 w-5 rounded-full"
+                                  src="https://images.unsplash.com/photo-1520785643438-5bf77931f493?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80"
+                                  alt=""
+                                />
+                              </div>
+                              <div className="text-sm font-medium text-gray-900">Eduardo Benz</div>
+                            </a>
+                          </li>
+                        </ul>
+                      </div> */}
+                      <div>
+                        <h2 className="text-sm font-medium text-gray-500">Recommendations</h2>
+                        <ul className="mt-2 leading-8">
+                        {recommendations.map((recommendation)=> (
+                              <li 
+                                key={recommendation.id}
+                                className="inline">
+                              <a
+                                href={recommendation.href}
+                                className="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5"
+                              >
+                                <div className="text-sm font-medium text-gray-900">{recommendation.name}</div>
+                              </a>{' '}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <CalendarIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
-                      <span className="text-gray-900 text-sm font-medium">
-                        Created on <time dateTime="2020-12-02">Apr 1, 2022</time>
-                      </span>
-                    </div>
-                  </div>
-                  <div className="mt-6 border-t border-gray-200 py-6 space-y-8">
-                    {/* <div>
-                      <h2 className="text-sm font-medium text-gray-500">Assignees</h2>
-                      <ul className="mt-3 space-y-3">
-                        <li className="flex justify-start">
-                          <a href="/" className="flex items-center space-x-3">
-                            <div className="flex-shrink-0">
-                              <img
-                                className="h-5 w-5 rounded-full"
-                                src="https://images.unsplash.com/photo-1520785643438-5bf77931f493?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80"
-                                alt=""
-                              />
-                            </div>
-                            <div className="text-sm font-medium text-gray-900">Eduardo Benz</div>
-                          </a>
-                        </li>
-                      </ul>
-                    </div> */}
-                    <div>
-                      <h2 className="text-sm font-medium text-gray-500">Recommendations</h2>
-                      <ul className="mt-2 leading-8">
-                        <li className="inline">
-                          <a
-                            href="/prescript"
-                            className="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5"
-                          >
-                            <div className="text-sm font-medium text-gray-900">Lorem</div>
-                          </a>{' '}
-                        </li>
-                        <li className="inline">
-                          <a
-                            href="/prescript"
-                            className="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5"
-                          >
-                            <div className="text-sm font-medium text-gray-900">Ipsum</div>
-                          </a>{' '}
-                        </li>
-                        <li className="inline">
-                          <a
-                            href="/prescript"
-                            className="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5"
-                          >
-                            <div className="text-sm font-medium text-gray-900">dolor</div>
-                          </a>{' '}
-                        </li>
-                        <li className="inline">
-                          <a
-                            href="/prescript"
-                            className="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5"
-                          >
-                            <div className="text-sm font-medium text-gray-900">voluptatum</div>
-                          </a>{' '}
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </aside>
-              </div>
+                  </aside>
+                }
+
+              </form>
             </div>
           </main>
         </div>
