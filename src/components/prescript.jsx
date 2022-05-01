@@ -337,7 +337,7 @@ export const Prescript = ({signOut, user}) => {
                         </div>
                         <div className="mt-6 border-t border-b border-gray-200 py-6 space-y-8">
                         <div>
-                            <h2 className="text-sm font-medium text-gray-500">Recommendations</h2>
+                            <h2 className="text-sm font-medium text-gray-500">Recognise Symptoms</h2>
                             <ul className="mt-2 leading-8">
                               {recommendations.map((recommendation)=> (
                                   <li 
