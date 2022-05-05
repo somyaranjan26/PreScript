@@ -18,7 +18,7 @@ export const CTA = () => {
                 nec.
               </p>
               <a
-                href="https://coming-soon.d1u3s8zp8q85j0.amplifyapp.com/"
+                href="https://app.d1u3s8zp8q85j0.amplifyapp.com/"
                 className="mt-8 bg-white border border-transparent rounded-md shadow px-5 py-3 inline-flex items-center text-base font-medium text-blue-600 hover:bg-blue-50"
               >
                 Sign up for free
