@@ -9,9 +9,9 @@ class NoteAdminView(admin.AdminSite):
 note_site = NoteAdminView(name='NoteAdminView')
 
 class NoteAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'note', 'score', 'User', 'created_At']
-    list_filter = ['created_At', 'User',]
-    search_fields = ['title', 'note', 'score', 'User']
+    list_display = ['id', 'title', 'note', 'score', 'email', 'created_At']
+    list_filter = ['created_At', 'email',]
+    search_fields = ['title', 'note', 'score', 'email']
     list_per_page = 10
     ordering = ['id']
 

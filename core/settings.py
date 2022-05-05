@@ -13,15 +13,17 @@ SECRET_KEY = '7z6479b+r7!_8+u7w6+ik2o(m+n=&!&qee1pkdl+b1ce$1(89s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'prescript.rout.live',]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'prescript.rout.live', 'app.d1u3s8zp8q85j0.amplifyapp.com']
 
 CORS_ORIGIN_WHITELIST = [
-    "http://localhost:3000/"
+    "http://localhost:3000/",
+    "https://app.d1u3s8zp8q85j0.amplifyapp.com"
 ]
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "https://prescript.rout.live",
+    "https://app.d1u3s8zp8q85j0.amplifyapp.com"
 ]
 
 # Application definition
