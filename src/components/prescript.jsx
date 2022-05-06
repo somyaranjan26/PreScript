@@ -94,7 +94,7 @@ export const Prescript = ({signOut, user}) => {
         body: uploadNote,
         redirect: "follow",
       }
-      fetch('http://127.0.0.1:8000/api/', requestOptions)
+      fetch('http://54.227.41.136/api/', requestOptions)
           .then((res) =>  {
               return res.json()
           })
