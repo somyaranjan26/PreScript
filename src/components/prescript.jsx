@@ -29,13 +29,6 @@ const projects = [
   { id: 3, name: 'Terms & Condition', href: '/terms' }
 ]
 
-const recommendations = [
-  { id: 1, name: 'Lorem', href: '/' },
-  { id: 2, name: 'Ipsum', href: '/' },
-  { id: 3, name: 'dolor', href: '/' },
-  { id: 4, name: 'voluptatum', href: '/' }
-]
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
@@ -48,10 +41,44 @@ export const Prescript = ({signOut, user}) => {
 
   const [ score, setScore] = useState(null);
   const [ date, setDate] = useState(null);
+  const [ recommendations, setRecommendations] = useState({});
 
   const classes = ['xl:col-span-2 xl:pr-8 xl:border-r xl:border-gray-200 max-h-screen', 'xl:col-span-3 max-h-screen']
 
+
+  // const getFixedNotes = () => {
+  //     const found = note.find(recommendations)
+  // }
+
+  const getRecommendationsContent = recommendations => {
+    let content = []
+    for (let i in recommendations) {
+      content.push(
+        <li key = {i}
+            className="inline">
+          <div
+            className="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5"
+          >
+            <div className="text-sm font-medium text-gray-900">{i.replace(/-/g, ' ')}</div>
+          </div>{' '}
+        </li>
+      )
+
+      // const getFixedNotes = () => {
+        // const found = note.match(recommendations[i])
+        // console.log(i + ": " + recommendations[i])
+      // }
+
+      // getFixedNotes()
+    }
+    return content
+  };
+
   const HandleClick = () => {
+
+    setRecommendations(null)
+    setScore(null)
+    setDate(null)
 
     if (title && note ) {
       const uploadNote = new FormData()
@@ -67,25 +94,26 @@ export const Prescript = ({signOut, user}) => {
         body: uploadNote,
         redirect: "follow",
       }
-  
       fetch('http://127.0.0.1:8000/api/', requestOptions)
           .then((res) =>  {
               return res.json()
           })
           .then((data) => { 
-            var RecievedDate = new Date(data.created_At)
+            
+            var RecievedDate = new Date(data.created_At);
             RecievedDate = RecievedDate.toString();
             RecievedDate = RecievedDate.substring(0, RecievedDate.length - 33).replace(/ /g, ', ')
 
             setScore(data.score)
             setDate(RecievedDate)
+            setRecommendations(data.recommendations)
+
           })
           .catch(error => console.log(error))
     } else {
       alert("Please Enter The Title!")
     }
   }
-
 
   return (
     <>
@@ -258,9 +286,6 @@ export const Prescript = ({signOut, user}) => {
             <div className="flex-1 px-4 flex justify-between">
               <div className="flex-1 flex">
                 <form className="w-full flex lg:ml-0" action="#" method="GET">
-                  <label htmlFor="search-field" className="sr-only">
-                    Search
-                  </label>
                   <div className="relative w-full text-gray-400 focus-within:text-gray-600">
                     <div className="absolute inset-y-0 left-0 flex items-center pointer-events-none">
                       <UserCircleIcon className="h-6 w-6" aria-hidden="true" />
@@ -337,20 +362,9 @@ export const Prescript = ({signOut, user}) => {
                         </div>
                         <div className="mt-6 border-t border-b border-gray-200 py-6 space-y-8">
                         <div>
-                            <h2 className="text-sm font-medium text-gray-500">Recognise Symptoms</h2>
+                            <h2 className="text-sm font-medium text-gray-500">Recommendations</h2>
                             <ul className="mt-2 leading-8">
-                              {recommendations.map((recommendation)=> (
-                                  <li 
-                                    key={recommendation.id}
-                                    className="inline">
-                                  <a
-                                    href={recommendation.href}
-                                    className="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5"
-                                  >
-                                    <div className="text-sm font-medium text-gray-900">{recommendation.name}</div>
-                                  </a>{' '}
-                                </li>
-                              ))}
+                              {getRecommendationsContent(recommendations)}
                             </ul>
                           </div>
                         </div>
@@ -414,18 +428,7 @@ export const Prescript = ({signOut, user}) => {
                       <div>
                         <h2 className="text-sm font-medium text-gray-500">Recommendations</h2>
                         <ul className="mt-2 leading-8">
-                        {recommendations.map((recommendation)=> (
-                              <li 
-                                key={recommendation.id}
-                                className="inline">
-                              <a
-                                href={recommendation.href}
-                                className="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5"
-                              >
-                                <div className="text-sm font-medium text-gray-900">{recommendation.name}</div>
-                              </a>{' '}
-                            </li>
-                          ))}
+                            {getRecommendationsContent(recommendations)}
                         </ul>
                       </div>
                     </div>
