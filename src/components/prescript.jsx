@@ -1,4 +1,5 @@
 import { Fragment, useState } from 'react'
+import axios from 'axios';
 import { Dialog, Transition } from '@headlessui/react'
 import Logo from '../assets/logo.png'
 
@@ -86,6 +87,8 @@ export const Prescript = ({signOut, user}) => {
       uploadNote.append('email', user.attributes.email)
       uploadNote.append('title', title)
       uploadNote.append('note', note)
+
+      // const ip = 'http://54.227.41.136/api/'
   
       var requestOptions = {
         method: 'POST',
@@ -94,12 +97,12 @@ export const Prescript = ({signOut, user}) => {
         body: uploadNote,
         redirect: "follow",
       }
-      fetch('http://54.227.41.136/api/', requestOptions)
+      fetch('https://prescript.herokuapp.com/api/',requestOptions)
           .then((res) =>  {
               return res.json()
           })
-          .then((data) => { 
-            
+          .then((data) => {
+            console.log(data)
             var RecievedDate = new Date(data.created_At);
             RecievedDate = RecievedDate.toString();
             RecievedDate = RecievedDate.substring(0, RecievedDate.length - 33).replace(/ /g, ', ')
