@@ -19,12 +19,10 @@ export const Feature = () => {
               </div>
               <div className="mt-6">
                 <h2 className="text-3xl font-extrabold tracking-tight text-gray-900">
-                  Access your notes anytime anywhere
+                  Evaluate your notes anytime anywhere
                 </h2>
                 <p className="mt-4 text-lg text-gray-500">
-                  Semper curabitur ullamcorper posuere nunc sed. Ornare iaculis bibendum malesuada faucibus lacinia
-                  porttitor. Pulvinar laoreet sagittis viverra duis. In venenatis sem arcu pretium pharetra at. Lectus
-                  viverra dui tellus ornare pharetra.
+                A doctor needs accurate diagnosis to treat a patient. Getting a feedback from a licensed physician is a time-intensive and resource-intensive process. A virtual scoring application confronts the barriers. Click on get started to get your notes evaluated for free.
                 </p>
                 <div className="mt-6">
                   <a
@@ -64,9 +62,7 @@ export const Feature = () => {
                   Get score for your paitent notes by an AI.
                 </h2>
                 <p className="mt-4 text-lg text-gray-500">
-                  Semper curabitur ullamcorper posuere nunc sed. Ornare iaculis bibendum malesuada faucibus lacinia
-                  porttitor. Pulvinar laoreet sagittis viverra duis. In venenatis sem arcu pretium pharetra at. Lectus
-                  viverra dui tellus ornare pharetra.
+                A doctor needs accurate diagnosis to treat a patient. Getting a feedback from a licensed physician is a time-intensive and resource-intensive process. A virtual scoring application confronts the barriers. Click on get started to get your notes evaluated for free.
                 </p>
                 <div className="mt-6">
                   <a
@@ -78,7 +74,7 @@ export const Feature = () => {
                 </div>
               </div>
             </div>
-            <div className="mt-8 border-t border-gray-200 pt-6">
+            {/* <div className="mt-8 border-t border-gray-200 pt-6">
               <blockquote>
                 <div>
                   <p className="text-base text-gray-500">
@@ -99,7 +95,7 @@ export const Feature = () => {
                   </div>
                 </footer>
               </blockquote>
-            </div>
+            </div> */}
           </div>
           <div className="mt-12 sm:mt-16 lg:mt-0">
             <div className="pl-4 sm:pl-6 sm:pr-4 md:-mr-16 lg:px-0 lg:m-0 lg:relative lg:h-full">

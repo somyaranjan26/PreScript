@@ -11,11 +11,10 @@ export const CTA = () => {
             <div className="lg:self-center">
               <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
                 <span className="block">Ready to dive in?</span>
-                <span className="block">Start your free trial today.</span>
+                <span className="block">Start now.</span>
               </h2>
               <p className="mt-4 text-lg leading-6 text-blue-200">
-                Ac euismod vel sit maecenas id pellentesque eu sed consectetur. Malesuada adipiscing sagittis vel nulla
-                nec.
+              If new to prescript, Sign up to artificial scoring expert and ease the process of rating the patient notes
               </p>
               <a
                 href="https://app.d1u3s8zp8q85j0.amplifyapp.com/"
