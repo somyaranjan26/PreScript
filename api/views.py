@@ -16,7 +16,7 @@ class NoteCreateAPI(CreateAPIView):
         data._mutable = True
 
         get_patient_features(data['note'])
-        data['score'] = round(get_score(), 2)
+        data['score'] = round(100 - round(get_score(), 2))
         data['recommendations'] = json.dumps(get_note_data())
 
         reload(sys.modules['api.score'])
